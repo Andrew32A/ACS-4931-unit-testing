@@ -15,8 +15,15 @@ def read_input():
     """Get the inputs from the user."""
     grade_list = []
     n_student = 5
-    for _ in range(0, n_student):
-        grade_list.append(int(input('Enter a number: ')))
+    for _ in range(n_student):
+        while True:
+            try:
+                grade = int(input('Enter a number: '))
+                grade_list.append(grade)
+                break
+            except ValueError:
+                print("Invalid input! Please enter an integer.")
+
     return grade_list
 
 def calculate_stat(grade_list):

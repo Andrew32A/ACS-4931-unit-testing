@@ -37,3 +37,11 @@ def test_display_grade_stat(mock_input, capsys):
     assert "The grades's mean is: 90.0" in captured.out
     assert 'The population standard deviation of grades is:  3.406' in captured.out
     assert '****** END ******' in captured.out
+
+@patch('builtins.input', side_effect=['90', '85', '95', '88', 'hello'])
+def test_read_input_string(mock_input, capsys):
+    # Tests if the function handles string input
+    with pytest.raises(StopIteration):
+        read_input()
+    captured = capsys.readouterr()
+    assert "Invalid input! Please enter an integer." in captured.out
